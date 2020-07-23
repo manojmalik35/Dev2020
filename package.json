@@ -1,0 +1,31 @@
+{
+  "name": "Placement",
+  "version": "1.0.0",
+  "description": "This is a repository which contains my 2020 Dev code.",
+  "main": "index.js",
+  "dependencies": {
+    "chromedriver": "^83.0.1",
+    "multi-progress": "^3.0.0",
+    "ora": "^4.0.5",
+    "progress": "^2.0.3",
+    "puppeteer": "^3.3.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojmalik35/Dev2020.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manojmalik35/Dev2020/issues"
+  },
+  "homepage": "https://github.com/manojmalik35/Dev2020#readme"
+}
