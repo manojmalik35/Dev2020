@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* element selector */
+        h1 {
+            color: red;
+        }
+
+        /* class selector */
+        .para {
+            color: blue;
+        }
+
+        /* id selector */
+        #my {
+            color: green;
+        }
+
+        /* 2 classes on same element */
+        /* without space */
+        .para.new {
+            font-size: 2rem;
+            /* color: brown; */
+        }
+
+        .outside{
+            padding: 1rem;
+        }
+
+        /* class inside class (all descendants)*/
+        /* with space */
+        .outside .inside {
+            color: violet;
+        }
+
+        /* class inside class (just children) */
+         /* .outside > .inside{
+            color: chartreuse;
+            background-color: red;
+        }  */
+
+        /* select by attribute */
+        p[myattr='you'] {
+            font-size: 3rem;
+            color: darkgoldenrod;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome</h1>
+
+    <p class="para">Lorem ipsum dolor sit amet.</p>
+    <p id="my">Lorem ipsum dolor sit amet.</p>
+    <p class="para new">Lorem ipsum dolor sit amet.</p>
+
+    <div class="outside">
+        <div class="inside"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat, voluptatum.
+            <h1 class="inside">Hello</h1>
+        </p></div>
+    </div>
+
+    <p myattr="you">Lorem ipsum dolor sit amet.</p>
+</body>
+
+</html>
