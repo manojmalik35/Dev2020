@@ -180,7 +180,7 @@ $(document).ready(function () {
                     formula: "",
                     children: [],
                     fontFamily: "arial",
-                    fontSize: 12,
+                    fontSize: 18,
                     bold: false,
                     italic: false,
                     underline: false,
