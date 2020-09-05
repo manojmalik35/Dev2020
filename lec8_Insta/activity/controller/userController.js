@@ -1,15 +1,21 @@
-let userDb = require("../model/user.json");
+let userModel = require("../model/userModel");
 
-module.exports.createUser = function createUser(req, res) {
-    let user = req.body;
-    // console.log(user);
-    userDb.push(user);
+module.exports.createUser = async function createUser(req, res) {
+    try {
+        let userObj = req.body;
+        // console.log(user);
 
-    fs.writeFileSync(path.join(__dirname, "user.json"), JSON.stringify(userDb));
-    res.status(201).json({//201 for successful creation
-        success: true,
-        user: user
-    })
+        let user = await userModel.create(userObj);
+        res.status(201).json({//201 for successful creation
+            success: true,
+            user: user
+        })
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message : err.message
+        })
+    }
 }
 
 //Read -> GET
@@ -74,25 +80,21 @@ module.exports.updateUser = function updateUser(req, res) {
 }
 
 //Delete -> DELETE
-module.exports.deleteUser = function deleteUser(req, res) {
+module.exports.deleteUser = async function deleteUser(req, res) {
     // console.log(req.params);
-    let { id } = req.params;
+    
+    try {
+        let { id } = req.params;
 
-    let initialLen = userDb.length;
-    userDb = userDb.filter(user => {
-        return user.user_id != id;
-    })
-
-    if (initialLen == userDb.length) {
-        return res.status(404).json({
-            status: "failure",
-            message: "user not found"
+        let result = await userModel.deleteById(id);
+        res.status(201).json({//201 for successful creation
+            success: true,
+            result : result
+        })
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message : err.message
         })
     }
-
-    fs.writeFileSync(path.join(__dirname, "user.json"), JSON.stringify(userDb));
-    res.status(200).json({
-        success: true,
-        message: "user deleted"
-    })
 }
