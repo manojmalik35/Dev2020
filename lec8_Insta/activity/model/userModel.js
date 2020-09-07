@@ -14,8 +14,15 @@ function create(userObj){
     })
 }
 
-function get(){
-    
+function getById(uid){
+    return new Promise(function(resolve, reject){
+        connection.query(`select * from user where uid="${uid}"`, function(err, result) {
+            if(err)
+                reject(err);
+            else
+                resolve(result[0]);
+        });
+    })
 }
 
 function updateById(uid, updateObj){
@@ -24,7 +31,7 @@ function updateById(uid, updateObj){
 
 function deleteById(uid){
     return new Promise(function(resolve, reject){
-        var query = connection.query('delete from user where uid=?', uid, function(err, result) {
+        var query = connection.query(`delete from user where uid="${uid}"`, function(err, result) {
             if(err)
                 reject(err);
             else
@@ -35,6 +42,6 @@ function deleteById(uid){
 
 
 module.exports.create = create;
-module.exports.get = get;
+module.exports.getById = getById;
 module.exports.updateById = updateById;
 module.exports.deleteById = deleteById;

@@ -13,36 +13,35 @@ module.exports.createUser = async function createUser(req, res) {
     } catch (err) {
         res.status(500).json({
             success: false,
-            message : err.message
+            message: err.message
         })
     }
 }
 
 //Read -> GET
-module.exports.getUser = function getUser(req, res) {
-    // console.log(req.params);
-    let { id } = req.params;
+module.exports.getUser = async function getUser(req, res) {
+    try {
+        // console.log(req.params);
+        let { id } = req.params;
 
-    let user;
-    for (let i = 0; i < userDb.length; i++) {
-        if (userDb[i].user_id == id) {
-            user = userDb[i];
-            break;
+        let user = await userModel.getById(id);
+        if (user == undefined) {
+            return res.status(404).json({
+                status: "failure",
+                message: "user not found"
+            })
         }
-    }
-    console.log(user);
 
-    if (user == undefined) {
-        return res.status(404).json({
-            status: "failure",
-            message: "user not found"
+        res.status(200).json({
+            success: true,
+            user: user
+        })
+    }catch(err){
+        res.status(500).json({
+            success : false,
+            message : err.message
         })
     }
-
-    res.status(200).json({
-        success: true,
-        user: user
-    })
 }
 
 //Update -> PATCH
@@ -82,19 +81,19 @@ module.exports.updateUser = function updateUser(req, res) {
 //Delete -> DELETE
 module.exports.deleteUser = async function deleteUser(req, res) {
     // console.log(req.params);
-    
+
     try {
         let { id } = req.params;
 
         let result = await userModel.deleteById(id);
         res.status(201).json({//201 for successful creation
             success: true,
-            result : result
+            result: result
         })
     } catch (err) {
         res.status(500).json({
             success: false,
-            message : err.message
+            message: err.message
         })
     }
 }
