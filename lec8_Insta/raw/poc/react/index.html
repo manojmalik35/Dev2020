@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React algorithm -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- It actually changes the DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Transpile JSX -> JS -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        let names = [{ name: "Leonard" }, { name: "Sheldon" }, { name: "Howard" }, { name: "Rajesh" }];
+        // React component -> Capital letter
+        function Hello(props) {
+            // return <h1> Hello {props.name} Your age is {props.age}</h1>
+            return <h1> Hello {props.name}</h1>
+        }
+
+        // Composition
+        function HelloParent(props) {
+            let { names } = props;
+            return (
+                <React.Fragment>
+                    {names.map(function (obj) {
+                        return <Hello name={obj.name}></Hello>
+                    })}
+                </React.Fragment>
+            )
+        }
+
+        // add to page
+        // ReactDOM.render(<Hello name="Manoj" age="22"></Hello>, document.getElementById("root"));
+        ReactDOM.render(<HelloParent names={names}></HelloParent>, document.getElementById("root"));
+    </script>
+</body>
+
+</html>

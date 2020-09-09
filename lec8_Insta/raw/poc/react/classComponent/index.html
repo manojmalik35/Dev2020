@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- React algorithm -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <!-- It actually changes the DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Transpile JSX -> JS -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div class="container ml-4">
+        <div id="root"></div>
+    </div>
+    <script type="text/babel">
+
+        // All class based component are inherited from React.component
+        // Life cycle stages ->
+        // initialize
+        // update
+        // remove from UI
+        class Counter extends React.Component {
+
+            // It will run once in lifetime
+            constructor(props) {
+                // parent constructor
+                super(props);
+                this.state = {
+                    value: 0
+                }
+                //agr arrow fn na banaye to normal fns ko bind krna padega yha pe
+                // increment.bind(this, null);
+                // decrement.bind(this, null);
+            }
+
+            increment = () => {
+                // this.state = this.state + 1; this is not allowed
+                this.setState({
+                    value: this.state.value + 1
+                });
+            }
+
+            decrement = () => {
+                // this.state = this.state - 1; this is not allowed
+                this.setState({
+                    value: this.state.value - 1
+                });
+            }
+
+            // React will always call render function when state changes
+            render() {
+                return (
+                    <React.Fragment>
+                        <div style={{backgroundColor:this.props.bg}}>
+                            <p className="ml-4 lead">{this.state.value}</p>
+                            <button className="btn btn-primary" onClick={this.increment}>+</button>
+                            <button className="btn btn-danger" onClick={this.decrement}>-</button>
+                        </div>
+                    </React.Fragment>
+                )
+            }
+        }
+
+        function MultiCounter() {
+            return (
+                <React.Fragment>
+                    <Counter bg="red"></Counter>
+                    <Counter bg="green"></Counter>
+                    <Counter></Counter>
+                    <Counter></Counter>
+                    <Counter></Counter>
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(<MultiCounter></MultiCounter>, document.getElementById("root"));
+    </script>
+</body>
+
+</html>
