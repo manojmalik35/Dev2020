@@ -27,11 +27,14 @@
         // Composition
         function HelloParent(props) {
             let { names } = props;
+            
             return (
                 <React.Fragment>
-                    {names.map(function (obj) {
-                        return <Hello name={obj.name}></Hello>
-                    })}
+                    {
+                        names.map(function (obj) {
+                            return <Hello name={obj.name}></Hello>
+                        })
+                    }
                 </React.Fragment>
             )
         }
