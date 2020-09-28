@@ -25,7 +25,7 @@ function updateById(uid, updateObj) {
     }
 
     updateStr = updateStr.substring(0, updateStr.length - 2);
-    var query = `update user set ${updateStr} where uid="${uid}"`;
+    var query = `update user set ${updateStr} where id="${uid}"`;
     // console.log(query);
     return new Promise(function (resolve, reject) {
         db.query(query, function (err, result) {
@@ -39,7 +39,7 @@ function updateById(uid, updateObj) {
 
 function deleteById(uid) {
     return new Promise(function (resolve, reject) {
-        var query = db.query(`delete from user where uid="${uid}"`, function (err, result) {
+        var query = db.query(`delete from user where id="${uid}"`, function (err, result) {
             if (err)
                 reject(err);
             else

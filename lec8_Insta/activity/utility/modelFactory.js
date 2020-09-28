@@ -28,7 +28,7 @@ module.exports.getEntityById = function get(entity){
     return function(uid) {
 
         return new Promise(function (resolve, reject) {
-            db.query(`select * from ${entity} where uid="${uid}"`, function (err, result) {
+            db.query(`select * from ${entity} where id="${uid}"`, function (err, result) {
                 if (err)
                     reject(err);
                 else

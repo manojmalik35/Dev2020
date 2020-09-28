@@ -15,7 +15,7 @@ const createRequest = function(mappingObj){
 //from user UI
 const acceptRequestQ = function(uid, follower_id){
     return new Promise(function(resolve, reject){
-        db.query(`UPDATE user_follower SET is_pending=0 where uid="${uid}" && follower_id="${follower_id}"`, function(err, result){
+        db.query(`UPDATE user_follower SET is_pending=0 where id="${uid}" && follower_id="${follower_id}"`, function(err, result){
             if(err)
                 reject(err);
             else
@@ -27,7 +27,7 @@ const acceptRequestQ = function(uid, follower_id){
 //from user UI
 const rejectRequestQ = function(uid, follower_id){
     return new Promise(function(resolve, reject){
-        db.query(`DELETE FROM user_follower where uid="${uid}" && follower_id="${follower_id}" && is_pending=1`, function(err, result){
+        db.query(`DELETE FROM user_follower where id="${uid}" && follower_id="${follower_id}" && is_pending=1`, function(err, result){
             if(err)
                 reject(err);
             else
@@ -38,7 +38,7 @@ const rejectRequestQ = function(uid, follower_id){
 
 const getAllFollowers = function(uid){
     return new Promise(function(resolve, reject){
-        db.query(`SELECT * FROM user_follower where uid="${uid}"`, function(err, result){
+        db.query(`SELECT * FROM user_follower where id="${uid}"`, function(err, result){
             if(err)
                 reject(err);
             else

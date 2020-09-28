@@ -76,6 +76,9 @@ module.exports.updateUser = async function updateUser(req, res) {
         let { id } = req.params;
 
         let toUpdate = req.body;
+        let path = req.file.filename;
+        toUpdate.p_img_url = path;
+        console.log(toUpdate);
         await userModel.updateById(id, toUpdate);
         let user = await userModel.getById(id);
 

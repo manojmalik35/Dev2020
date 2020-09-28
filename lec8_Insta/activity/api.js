@@ -5,6 +5,7 @@ const postRouter = require("./router/postRouter");
 
 app.use(express.static(__dirname + "/view"));
 app.use(express.json());
+app.use(express.static("public"));
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 
